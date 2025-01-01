@@ -12,6 +12,7 @@ pub fn main() !void {
     defer rl.closeWindow();
 
     rl.setTargetFPS(60);
+    rl.setExitKey(rl.KeyboardKey.null);
 
     var player = pd.Paddle.init(pd.ControlType.player, 10, cnst.screen_height / 2 - cnst.paddle_height / 2, cnst.paddle_width, cnst.paddle_height, cnst.paddle_speed);
     var ai = pd.Paddle.init(pd.ControlType.ai, cnst.screen_width - cnst.paddle_width - 10, cnst.screen_height / 2 - cnst.paddle_height / 2, cnst.paddle_width, cnst.paddle_height, cnst.paddle_speed);
