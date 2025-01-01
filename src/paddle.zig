@@ -14,6 +14,8 @@ pub const Paddle = struct {
     height: i32,
     speed: i32,
     ball_y: i32,
+    initial_x: i32,
+    initial_y: i32,
 
     pub fn init(controlType: ControlType, x: i32, y: i32, width: i32, height: i32, speed: i32) Paddle {
         return Paddle{
@@ -24,6 +26,8 @@ pub const Paddle = struct {
             .height = height,
             .speed = speed,
             .ball_y = @divFloor(rl.getScreenHeight(), 2),
+            .initial_x = x,
+            .initial_y = y,
         };
     }
 
@@ -42,6 +46,11 @@ pub const Paddle = struct {
             ControlType.player => self.moveAsPlayer(),
             ControlType.ai => self.moveAsAi(),
         }
+    }
+
+    pub fn reset(self: *Paddle) void {
+        self.x = self.initial_x;
+        self.y = self.initial_y;
     }
 
     fn moveAsPlayer(self: *Paddle) void {

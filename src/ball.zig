@@ -1,5 +1,6 @@
 const rl = @import("raylib");
 const cnst = @import("constants.zig");
+const Paddle = @import("paddle.zig").Paddle;
 
 pub const Ball = struct {
     x: i32,
@@ -9,8 +10,10 @@ pub const Ball = struct {
     speed_y: i32,
     player_score: *i32,
     ai_score: *i32,
+    player: *Paddle,
+    ai: *Paddle,
 
-    pub fn init(x: i32, y: i32, radius: i32, speed_x: i32, speed_y: i32, player_score: *i32, ai_score: *i32) Ball {
+    pub fn init(x: i32, y: i32, radius: i32, speed_x: i32, speed_y: i32, player_score: *i32, ai_score: *i32, player: *Paddle, ai: *Paddle) Ball {
         var ball = Ball{
             .x = x,
             .y = y,
@@ -19,8 +22,10 @@ pub const Ball = struct {
             .speed_y = speed_y,
             .player_score = player_score,
             .ai_score = ai_score,
+            .player = player,
+            .ai = ai,
         };
-        ball.resetBall();
+        ball.reset();
         return ball;
     }
 
@@ -39,20 +44,23 @@ pub const Ball = struct {
         }
 
         if (self.x + self.radius >= rl.getScreenWidth()) {
-            self.resetBall();
+            self.reset();
             self.player_score.* += 1;
         } else if (self.x - self.radius <= 0) {
-            self.resetBall();
+            self.reset();
             self.ai_score.* += 1;
         }
     }
 
-    fn resetBall(self: *Ball) void {
+    fn reset(self: *Ball) void {
         self.x = @divFloor(rl.getScreenWidth(), 2);
         self.y = @divFloor(rl.getScreenHeight(), 2);
 
         const directions = [2]i32{ -1, 1 };
         self.speed_x *= directions[@intCast(rl.getRandomValue(0, 1))];
         self.speed_y *= directions[@intCast(rl.getRandomValue(0, 1))];
+
+        self.player.reset();
+        self.ai.reset();
     }
 };
