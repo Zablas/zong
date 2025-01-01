@@ -13,12 +13,9 @@ pub fn main() !void {
 
     rl.setTargetFPS(60);
 
-    var player_score: i32 = 0;
-    var ai_score: i32 = 0;
-
     var player = pd.Paddle.init(pd.ControlType.player, 10, cnst.screen_height / 2 - cnst.paddle_height / 2, cnst.paddle_width, cnst.paddle_height, cnst.paddle_speed);
     var ai = pd.Paddle.init(pd.ControlType.ai, cnst.screen_width - cnst.paddle_width - 10, cnst.screen_height / 2 - cnst.paddle_height / 2, cnst.paddle_width, cnst.paddle_height, cnst.paddle_speed);
-    var ball = bl.Ball.init(cnst.screen_width / 2, cnst.screen_height / 2, cnst.ball_radius, cnst.ball_speed_x, cnst.ball_speed_y, &player_score, &ai_score, &player, &ai);
+    var ball = bl.Ball.init(cnst.screen_width / 2, cnst.screen_height / 2, cnst.ball_radius, cnst.ball_speed_x, cnst.ball_speed_y, &player, &ai);
 
     while (!rl.windowShouldClose()) {
         rl.beginDrawing();
@@ -62,7 +59,7 @@ pub fn main() !void {
             ball.speed_x *= -1;
         }
 
-        rl.drawText(rl.textFormat("%i", .{player_score}), cnst.screen_width / 4 - 20, cnst.text_y, cnst.text_font_size, rl.Color.white);
-        rl.drawText(rl.textFormat("%i", .{ai_score}), 3 * cnst.screen_width / 4 - 20, cnst.text_y, cnst.text_font_size, rl.Color.white);
+        rl.drawText(rl.textFormat("%i", .{player.score}), cnst.screen_width / 4 - 20, cnst.text_y, cnst.text_font_size, rl.Color.white);
+        rl.drawText(rl.textFormat("%i", .{ai.score}), 3 * cnst.screen_width / 4 - 20, cnst.text_y, cnst.text_font_size, rl.Color.white);
     }
 }

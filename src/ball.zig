@@ -8,20 +8,16 @@ pub const Ball = struct {
     radius: i32,
     speed_x: i32,
     speed_y: i32,
-    player_score: *i32,
-    ai_score: *i32,
     player: *Paddle,
     ai: *Paddle,
 
-    pub fn init(x: i32, y: i32, radius: i32, speed_x: i32, speed_y: i32, player_score: *i32, ai_score: *i32, player: *Paddle, ai: *Paddle) Ball {
+    pub fn init(x: i32, y: i32, radius: i32, speed_x: i32, speed_y: i32, player: *Paddle, ai: *Paddle) Ball {
         var ball = Ball{
             .x = x,
             .y = y,
             .radius = radius,
             .speed_x = speed_x,
             .speed_y = speed_y,
-            .player_score = player_score,
-            .ai_score = ai_score,
             .player = player,
             .ai = ai,
         };
@@ -45,10 +41,10 @@ pub const Ball = struct {
 
         if (self.x + self.radius >= rl.getScreenWidth()) {
             self.reset();
-            self.player_score.* += 1;
+            self.player.score += 1;
         } else if (self.x - self.radius <= 0) {
             self.reset();
-            self.ai_score.* += 1;
+            self.ai.score += 1;
         }
     }
 

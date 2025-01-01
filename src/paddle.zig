@@ -16,6 +16,7 @@ pub const Paddle = struct {
     ball_y: i32,
     initial_x: i32,
     initial_y: i32,
+    score: i32 = 0,
 
     pub fn init(controlType: ControlType, x: i32, y: i32, width: i32, height: i32, speed: i32) Paddle {
         return Paddle{
