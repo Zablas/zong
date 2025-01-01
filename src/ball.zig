@@ -11,7 +11,7 @@ pub const Ball = struct {
     ai_score: *i32,
 
     pub fn init(x: i32, y: i32, radius: i32, speed_x: i32, speed_y: i32, player_score: *i32, ai_score: *i32) Ball {
-        return Ball{
+        var ball = Ball{
             .x = x,
             .y = y,
             .radius = radius,
@@ -20,6 +20,8 @@ pub const Ball = struct {
             .player_score = player_score,
             .ai_score = ai_score,
         };
+        ball.resetBall();
+        return ball;
     }
 
     pub fn draw(self: *Ball) void {
