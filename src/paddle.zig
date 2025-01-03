@@ -32,7 +32,7 @@ pub const Paddle = struct {
         };
     }
 
-    pub fn draw(self: *Paddle) void {
+    pub fn draw(self: Paddle) void {
         const paddle_rect = rl.Rectangle{
             .x = @floatFromInt(self.x),
             .y = @floatFromInt(self.y),

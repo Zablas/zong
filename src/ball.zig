@@ -25,7 +25,7 @@ pub const Ball = struct {
         return ball;
     }
 
-    pub fn draw(self: *Ball) void {
+    pub fn draw(self: Ball) void {
         rl.drawCircle(self.x, self.y, @floatFromInt(self.radius), cnst.yellow);
     }
 
