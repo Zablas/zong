@@ -82,7 +82,19 @@ pub fn main() !void {
             ball.speed_x *= -1;
         }
 
-        rl.drawText(rl.textFormat("%i", .{player.score}), cnst.screen_width / 4 - 20, cnst.text_y, cnst.text_font_size, rl.Color.white);
-        rl.drawText(rl.textFormat("%i", .{ai.score}), 3 * cnst.screen_width / 4 - 20, cnst.text_y, cnst.text_font_size, rl.Color.white);
+        rl.drawText(
+            rl.textFormat("%i", .{player.score}),
+            cnst.screen_width / 4 - 20,
+            cnst.text_y,
+            cnst.text_font_size,
+            rl.Color.white,
+        );
+        rl.drawText(
+            rl.textFormat("%i", .{ai.score}),
+            3 * cnst.screen_width / 4 - 20,
+            cnst.text_y,
+            cnst.text_font_size,
+            rl.Color.white,
+        );
     }
 }
