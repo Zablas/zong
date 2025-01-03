@@ -14,9 +14,31 @@ pub fn main() !void {
     rl.setTargetFPS(60);
     rl.setExitKey(rl.KeyboardKey.null);
 
-    var player = pd.Paddle.init(pd.ControlType.player, 10, cnst.screen_height / 2 - cnst.paddle_height / 2, cnst.paddle_width, cnst.paddle_height, cnst.paddle_speed);
-    var ai = pd.Paddle.init(pd.ControlType.ai, cnst.screen_width - cnst.paddle_width - 10, cnst.screen_height / 2 - cnst.paddle_height / 2, cnst.paddle_width, cnst.paddle_height, cnst.paddle_speed);
-    var ball = bl.Ball.init(cnst.screen_width / 2, cnst.screen_height / 2, cnst.ball_radius, cnst.ball_speed_x, cnst.ball_speed_y, &player, &ai);
+    var player = pd.Paddle.init(
+        pd.ControlType.player,
+        10,
+        cnst.screen_height / 2 - cnst.paddle_height / 2,
+        cnst.paddle_width,
+        cnst.paddle_height,
+        cnst.paddle_speed,
+    );
+    var ai = pd.Paddle.init(
+        pd.ControlType.ai,
+        cnst.screen_width - cnst.paddle_width - 10,
+        cnst.screen_height / 2 - cnst.paddle_height / 2,
+        cnst.paddle_width,
+        cnst.paddle_height,
+        cnst.paddle_speed,
+    );
+    var ball = bl.Ball.init(
+        cnst.screen_width / 2,
+        cnst.screen_height / 2,
+        cnst.ball_radius,
+        cnst.ball_speed_x,
+        cnst.ball_speed_y,
+        &player,
+        &ai,
+    );
 
     while (!rl.windowShouldClose()) {
         rl.beginDrawing();
